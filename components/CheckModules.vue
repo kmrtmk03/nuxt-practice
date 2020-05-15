@@ -1,14 +1,20 @@
 <template lang="pug">
   .wrapper
-    h1.ttl Nuxt-Practice
+    h1.ttl Check_Modules
 </template>
 
 <script>
 import anime from 'animejs'
 
+let PIXI
+if(process.client) {
+    PIXI = require('pixi.js')
+}
+
 export default {
   mounted: function() {
     console.log(anime)
+    console.log(PIXI)
   }
 }
 </script>

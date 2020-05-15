@@ -47,7 +47,8 @@ export default {
     ** You can extend webpack config here
     */
    vendor: [
-    'animejs'
+    'animejs',
+    'pixi.js'
   ],
   extend (config, ctx) {
     }

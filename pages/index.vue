@@ -1,14 +1,14 @@
 <template lang="pug">
   .container
-    Logo
+    CheckModules
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import CheckModules from '~/components/CheckModules.vue'
 
 export default {
   components: {
-    Logo
+    CheckModules
   }
 }
 </script>
