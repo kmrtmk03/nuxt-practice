@@ -82,9 +82,8 @@ export default {
 
     //Click下ときの処理
     OnClickSprite() {
-      console.log("HELLO WORLD")
-      // this.ChangeScale(this.sprite)
       this.ChangePosition(this.sprite, 0, 10)
+      this.FadeOut(this.sprite)
     },
 
     //Spriteを動かす処理
@@ -107,23 +106,25 @@ export default {
       })
     },
 
+    //Spriteを動かす処理
     ChangePosition(_target, _parsentX, _parsentY) {
+      //Windowのサイズ
       let appSize = {
         w: this.app.screen.width,
         h: this.app.screen.height
       }
 
+      //Position
       let pos = {
         x: _target.x,
         y: _target.y
       }
 
+      //移動量
       let amount = {
         x: appSize.w * (_parsentX / 100),
         y: appSize.h * (_parsentY / 100)
       }
-
-      // let amount = appSize.h * (_parsentY / 100)
 
       anime({
         targets: pos,
@@ -135,8 +136,24 @@ export default {
           this.SetPosition(this.sprite, pos.x, pos.y)
         }
       })
-    }
+    },
 
+    //フェードアウト
+    FadeOut(_target) {
+      let color = {
+        alpha: 1000
+      }
+
+      anime({
+        targets: color,
+        alpha: 0,
+        round: 1,
+        easing: 'easeInOutQuad',
+        update: () => {
+          _target.alpha = color.alpha / 1000
+        }
+      })
+    }
   }
 }
 </script>
