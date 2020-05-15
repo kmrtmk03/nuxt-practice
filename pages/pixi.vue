@@ -5,6 +5,7 @@
 
 <script>
 import anime from 'animejs'
+import MySprite from '@/assets/pixi/js/MySprite.js'
 
 let PIXI
 if(process.client) {
@@ -18,9 +19,7 @@ export default {
       height: 0,
       app: null,
       pixiviewEl: null,
-      img: null,
-      texture: null,
-      sprite: null
+      sprites: []
     }
   },
   mounted: function() {
@@ -40,119 +39,27 @@ export default {
       this.pixiviewEl = document.getElementById('pixiview')
       this.pixiviewEl.appendChild(this.app.view)
 
-      this.InitSprite()
+      //Spriteを生成
+      this.InitSprite(0, 'sample_img-0', 0.25, 0.25, -10, -10)
+      this.InitSprite(1, 'sample_img-0', 0.25, 0.5, -10, 0)
+      this.InitSprite(2, 'sample_img-0', 0.25, 0.75, -10, 10)
+      this.InitSprite(3, 'sample_img-0', 0.5, 0.75, 0, 10)
+      this.InitSprite(4, 'sample_img-0', 0.75, 0.75, 10, 10)
+      this.InitSprite(5, 'sample_img-0', 0.75, 0.5, 10, 0)
+      this.InitSprite(6, 'sample_img-0', 0.75, 0.25, 10, -10)
+      this.InitSprite(7, 'sample_img-0', 0.5, 0.25, 0, -10)
     },
 
-    InitSprite() {
-      //Texture読み込み
-      this.img = require("@/assets/images/sample_img-0.png")
-      this.texture = new PIXI.Texture.from(this.img)
-      this.sprite = new PIXI.Sprite(this.texture);
+    //Spriteを生成
+    InitSprite(_id, _imgName, _posX, _posY, _moveX, _moveY) {
+      const img = require('@/assets/pixi/images/' + _imgName + '.png')
+      const w = this.app.screen.width
+      const h = this.app.screen.height
 
-      //Spriteのアンカーポイントを選択
-      this.sprite.anchor.x = 0.5;
-      this.sprite.anchor.y = 0.5;
-
-      //Spriteの位置を決める
-      this.SetPosition(this.sprite, this.app.screen.width / 2, this.app.screen.height / 2)
-
-      //Spriteの大きさ
-      this.SetScale(this.sprite, 0.2, 0.2)
-
-      //インタラクションの設定
-      this.sprite.interactive = true
-      this.sprite.buttonMode = true
-      this.sprite.on('pointertap', this.OnClickSprite)
+      this.sprites[_id] = new MySprite(img, w, h, _posX, _posY, _moveX, _moveY).GetSprite()
 
       //Spriteを配置
-      this.app.stage.addChild(this.sprite);
-    },
-
-    //Spriteの大きさを変更
-    SetScale(_sprite, _x, _y) {
-      _sprite.scale.x = _x
-      _sprite.scale.y = _y
-    },
-
-    //Spriteの位置を変更
-    SetPosition(_sprite, _x, _y) {
-      _sprite.x = _x
-      _sprite.y = _y
-    },
-
-    //Click下ときの処理
-    OnClickSprite() {
-      this.ChangePosition(this.sprite, 0, 10)
-      this.FadeOut(this.sprite)
-    },
-
-    //Spriteを動かす処理
-    ChangeScale(_target) {
-      let val = {
-        scaleX: _target.scale.x * 1000
-      }
-      anime({
-        targets: val,
-        scaleX: 1000,
-        round: 1,
-        easing: 'linear',
-        update: () => {
-          this.SetScale(_target, val.scaleX / 1000, val.scaleX / 1000)
-        },
-        complete: () => {
-          val.scaleX = 0.2 * 1000
-          this.SetScale(_target, val.scaleX / 1000, val.scaleX / 1000)
-        }
-      })
-    },
-
-    //Spriteを動かす処理
-    ChangePosition(_target, _parsentX, _parsentY) {
-      //Windowのサイズ
-      let appSize = {
-        w: this.app.screen.width,
-        h: this.app.screen.height
-      }
-
-      //Position
-      let pos = {
-        x: _target.x,
-        y: _target.y
-      }
-
-      //移動量
-      let amount = {
-        x: appSize.w * (_parsentX / 100),
-        y: appSize.h * (_parsentY / 100)
-      }
-
-      anime({
-        targets: pos,
-        x: pos.x + amount.x,
-        y: pos.y + amount.y,
-        round: 1,
-        easing: 'easeInOutQuad',
-        update: () => {
-          this.SetPosition(this.sprite, pos.x, pos.y)
-        }
-      })
-    },
-
-    //フェードアウト
-    FadeOut(_target) {
-      let color = {
-        alpha: 1000
-      }
-
-      anime({
-        targets: color,
-        alpha: 0,
-        round: 1,
-        easing: 'easeInOutQuad',
-        update: () => {
-          _target.alpha = color.alpha / 1000
-        }
-      })
+      this.app.stage.addChild(this.sprites[_id]);
     }
   }
 }
