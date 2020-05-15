@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import anime from 'animejs'
 
 let PIXI
 if(process.client) {
@@ -82,7 +83,60 @@ export default {
     //Click下ときの処理
     OnClickSprite() {
       console.log("HELLO WORLD")
+      // this.ChangeScale(this.sprite)
+      this.ChangePosition(this.sprite, 0, 10)
+    },
+
+    //Spriteを動かす処理
+    ChangeScale(_target) {
+      let val = {
+        scaleX: _target.scale.x * 1000
+      }
+      anime({
+        targets: val,
+        scaleX: 1000,
+        round: 1,
+        easing: 'linear',
+        update: () => {
+          this.SetScale(_target, val.scaleX / 1000, val.scaleX / 1000)
+        },
+        complete: () => {
+          val.scaleX = 0.2 * 1000
+          this.SetScale(_target, val.scaleX / 1000, val.scaleX / 1000)
+        }
+      })
+    },
+
+    ChangePosition(_target, _parsentX, _parsentY) {
+      let appSize = {
+        w: this.app.screen.width,
+        h: this.app.screen.height
+      }
+
+      let pos = {
+        x: _target.x,
+        y: _target.y
+      }
+
+      let amount = {
+        x: appSize.w * (_parsentX / 100),
+        y: appSize.h * (_parsentY / 100)
+      }
+
+      // let amount = appSize.h * (_parsentY / 100)
+
+      anime({
+        targets: pos,
+        x: pos.x + amount.x,
+        y: pos.y + amount.y,
+        round: 1,
+        easing: 'easeInOutQuad',
+        update: () => {
+          this.SetPosition(this.sprite, pos.x, pos.y)
+        }
+      })
     }
+
   }
 }
 </script>
