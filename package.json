@@ -18,7 +18,8 @@
     "pixi.js": "^5.2.4",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
-    "pug-plain-loader": "^1.0.0"
+    "pug-plain-loader": "^1.0.0",
+    "three": "^0.116.1"
   },
   "devDependencies": {
     "sass-loader": "^8.0.2",
