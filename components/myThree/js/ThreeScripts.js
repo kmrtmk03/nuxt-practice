@@ -1,10 +1,12 @@
 import * as THREE from 'three'
+import GLTFLoader from 'three-gltf-loader'
 import anime from 'animejs'
 
 export default class ThreeScripts {
   constructor(props) {
     //propsをローカル変数に
     this.props = props
+
 
     //Config変数
     this.canvas = this.props.$canvas
@@ -18,6 +20,8 @@ export default class ThreeScripts {
     this.camera = null
     this.renderer = null
     this.sampleBox = null
+    this.directionalLight = null
+    this.city = null
     
     //Canvasの初期化
     this.Init()
@@ -37,34 +41,39 @@ export default class ThreeScripts {
 
     //Camera
     this.camera = new THREE.PerspectiveCamera(45, this.windowSize.w / this.windowSize.h)
-    this.camera.position.set(0, 0, 10)
+    this.camera.position.set(0, 0, 5)
 
-    // console.log(GLTFLoader)
+    // 平行光源
+    this.directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+    this.directionalLight.position.set(1, 1, 1);
+    // シーンに追加
+    this.scene.add(this.directionalLight);
+    
+    //GLTFLoader
+    this.loader = new GLTFLoader()
+    this.loader.load('../city-0.gltf', data =>  {
+      var gltf = data
+      this.city = gltf.scene
 
-    //SampleObjectを作成
-    this.CreateSampleObject()
+      this.city.position.y -= 1
+
+      this.scene.add(this.city)
+
+      //SampleObjectを作成
+      this.Render()
+    })
   }
 
-  //Sample Object
-  CreateSampleObject() {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshNormalMaterial();
-    this.sampleBox = new THREE.Mesh(geometry, material);
-    this.scene.add(this.sampleBox);
-
-    this.RenderSampleObject()
-  }
 
   //Sample Object
-  RenderSampleObject() {
+  Render() {
 
     requestAnimationFrame(() => {
-      this.RenderSampleObject()
+      this.Render()
     })
 
-    this.sampleBox.rotation.y += 0.01
-    this.sampleBox.rotation.x += 0.01
-    
+    this.city.rotation.y += 0.01
+
     //Renderer
     this.renderer.render(this.scene, this.camera)
   }

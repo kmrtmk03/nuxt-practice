@@ -5,7 +5,8 @@
   "author": "kimura",
   "private": true,
   "scripts": {
-    "dev": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt",
+    "dev": "nuxt",
+    "dev-ip": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
@@ -20,7 +21,8 @@
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
-    "three": "^0.116.1"
+    "three": "^0.116.1",
+    "three-gltf-loader": "^1.111.0"
   },
   "devDependencies": {
     "sass-loader": "^8.0.2",
