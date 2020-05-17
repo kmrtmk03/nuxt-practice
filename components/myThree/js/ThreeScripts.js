@@ -39,6 +39,8 @@ export default class ThreeScripts {
     this.camera = new THREE.PerspectiveCamera(45, this.windowSize.w / this.windowSize.h)
     this.camera.position.set(0, 0, 10)
 
+    // console.log(GLTFLoader)
+
     //SampleObjectを作成
     this.CreateSampleObject()
   }

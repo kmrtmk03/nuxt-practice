@@ -4,7 +4,6 @@
 </template>
 
 <script>
-import * as THREE from 'three'
 import ThreeScripts from '@/components/myThree/js/ThreeScripts.js'
 
 export default {
@@ -13,9 +12,6 @@ export default {
       screenWidth: 0,
       screenHeight: 0
     }
-  },
-
-  created() {
   },
 
   mounted() {
