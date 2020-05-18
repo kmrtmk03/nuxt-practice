@@ -48,6 +48,10 @@ export default {
       this.InitSprite(5, 'sample_img-0', 0.75, 0.5, 10, 0)
       this.InitSprite(6, 'sample_img-0', 0.75, 0.25, 10, -10)
       this.InitSprite(7, 'sample_img-0', 0.5, 0.25, 0, -10)
+
+
+      //Test
+      this.sprites[0].transform.position.x -= 200
     },
 
     //Spriteを生成
