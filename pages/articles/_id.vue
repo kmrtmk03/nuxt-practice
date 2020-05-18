@@ -7,6 +7,8 @@
       a.thumbnail(v-for="post in postList", :key="post.id" :href="post.link")
         img.thumbnail_img(:src="post._embedded['wp:featuredmedia'][0].source_url")
         h3.thumbnail_ttl {{post.title.rendered}}
+        p.thumbnail_txt
+          span(v-html="post.excerpt.rendered")
 
 </template>
 
@@ -46,6 +48,7 @@ export default {
     padding: 20px;
     transition: 0.2s;
     border: 2px solid #eee;
+    text-decoration: none;
 
     &:hover {
       box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
@@ -60,6 +63,10 @@ export default {
     &_ttl {
       font-size: 14px;
       padding: 16px 0 8px;
+    }
+
+    &_txt {
+      font-size: 12px;
     }
   }
 
