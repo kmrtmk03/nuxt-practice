@@ -8,9 +8,13 @@ export default class ArtWorkGL {
         window.addEventListener('mousemove', e => {
           Common.MouseMoved(e.clientX, e.clientY)
         })
+
+        window.addEventListener('resize', () => {
+          Common.ResizeHandler()
+        })
     }
 
     Init() {
-        Common.Init(this.props.$canvas)
+        Common.Init(this.props.$canvas, this.props.$container)
     }
 }
