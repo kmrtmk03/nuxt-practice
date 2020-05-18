@@ -41,11 +41,9 @@ export default {
       duration: 0
     })
     .on("enter", (event) => {
-      console.log('enter')
       this.isHidden = false
     })
     .on("leave", (event) => {
-      console.log('leave')
       this.isHidden = true
     })
 
