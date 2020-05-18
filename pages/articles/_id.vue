@@ -50,7 +50,7 @@ export default {
 
   .thumbnail {
     width: 320px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     display: block;
     border-radius: 10px;
     padding: 20px;
