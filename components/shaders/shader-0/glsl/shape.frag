@@ -9,7 +9,7 @@ uniform vec2 uMouse;
 
 void main() {
 
-  vec2 uv = gl_FragCoord.xy / uResolution.xy;
+  vec2 uv = (1.0 / uPixelRatio) * gl_FragCoord.xy / uResolution.xy;
 
   vec2 myUv = (uv - vec2(0.5)) * uAs.xy  + vec2(0.5, 0.45);
 
