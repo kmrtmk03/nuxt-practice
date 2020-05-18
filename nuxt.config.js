@@ -31,6 +31,10 @@ export default {
     {
       src: '~/plugins/vue-scrollmagic.js',
       ssr: false
+    },
+    {
+      src: '~/plugins/vue-awesome-swiper.js',
+      ssr: false
     }
   ],
   /*
@@ -53,7 +57,8 @@ export default {
    vendor: [
     'animejs',
     'pixi.js',
-    'vue-scrollmagic'
+    'vue-scrollmagic',
+    'vue-awesome-swiper'
   ],
   extend (config, ctx) {
     }
