@@ -35,11 +35,18 @@ class Common {
             type: 't',
             value: null
           },
+          uDepth: {
+            type: 't',
+            value: null
+          },
           uPixelRatio: {
             value: null
           },
           uAs: {
             value: this.as
+          },
+          uMouse: {
+            value: this.mouse
           }
         }
 
@@ -67,11 +74,12 @@ class Common {
         this.geo = new THREE.PlaneGeometry(2, 2, 1, 1)
         
         this.uniforms.uAspect.value = this.size.windowW / this.size.windowH
-        this.uniforms.uTex.value = THREE.ImageUtils.loadTexture('../shader.jpg')
+        this.uniforms.uTex.value = THREE.ImageUtils.loadTexture('../color.jpg')
+        this.uniforms.uDepth.value = THREE.ImageUtils.loadTexture('../color-depth.jpg')
         this.uniforms.uPixelRatio.value = window.devicePixelRatio
         
-        this.resolution.x = window.innerWidth
-        this.resolution.y = window.innerHeight
+        this.resolution.x = this.size.windowW
+        this.resolution.y = this.size.windowH
 
         let imgAs = 9 / 16
         if(this.resolution.y / this.resolution.x < imgAs) {
@@ -80,16 +88,6 @@ class Common {
         } else{
           this.as.x = (this.resolution.x/this.resolution.y) * imgAs ;
           this.as.y = 1;
-        }
-    
-
-        let a1,a2;
-        if(this.height/this.width<this.imageAspect) {
-          a1 = 1;
-          a2 = (this.height/this.width) / this.imageAspect;
-        } else{
-          a1 = (this.width/this.height) * this.imageAspect ;
-          a2 = 1;
         }
     
         this.mat = new THREE.ShaderMaterial({
@@ -108,7 +106,7 @@ class Common {
     SetSize() {
         this.size = {
             windowW: window.innerWidth,
-            windowH: window.innerHeight
+            windowH: window.innerWidth * 9 / 16
         }
     }
 
@@ -133,8 +131,8 @@ class Common {
     }
 
     MouseMoved(x, y) {
-        this.mouse.x = x / this.size.windowW
-        this.mouse.y = 1.0 - (y / this.size.windowH)
+        this.mouse.x = (x / this.size.windowW) - 0.5
+        this.mouse.y = (1.0 - (y / this.size.windowH)) - 0.5
     }
 }
 
