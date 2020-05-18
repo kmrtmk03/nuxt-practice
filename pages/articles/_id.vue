@@ -9,17 +9,25 @@
         h3.thumbnail_ttl {{post.title.rendered}}
         p.thumbnail_txt
           span(v-html="post.excerpt.rendered")
+        p.thumbnail_date {{post.date | dateFilter}}
 
 </template>
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 
 export default {
   async asyncData ({ params }) {
     let { data } = await axios.get(`https://pronama.azurewebsites.net/wp-json/wp/v2/posts?_embed&page=1&per_page=6`)
     return {
       postList: data
+    }
+  },
+
+  filters: {
+    dateFilter(value) {
+      return dayjs(value).format('YYYY.MM.DD')
     }
   }
 }
@@ -67,6 +75,11 @@ export default {
 
     &_txt {
       font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    &_date {
+      font-size: 10px;
     }
   }
 
