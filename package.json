@@ -23,7 +23,8 @@
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
     "three": "^0.116.1",
-    "three-gltf-loader": "^1.111.0"
+    "three-gltf-loader": "^1.111.0",
+    "vue-scrollmagic": "^1.2.0"
   },
   "devDependencies": {
     "sass-loader": "^8.0.2",

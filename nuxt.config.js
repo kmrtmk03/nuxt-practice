@@ -28,6 +28,10 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {
+      src: '~/plugins/vue-scrollmagic.js',
+      ssr: false
+    }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -48,7 +52,8 @@ export default {
     */
    vendor: [
     'animejs',
-    'pixi.js'
+    'pixi.js',
+    'vue-scrollmagic'
   ],
   extend (config, ctx) {
     }

@@ -3,13 +3,14 @@
     .articles_wrapper
       h2 記事一覧
 
-    .thumbnail_wrapper
-      a.thumbnail(v-for="post in postList", :key="post.id" :href="post.link")
-        img.thumbnail_img(:src="post._embedded['wp:featuredmedia'][0].source_url")
-        h3.thumbnail_ttl {{post.title.rendered}}
-        p.thumbnail_txt
-          span(v-html="post.excerpt.rendered")
-        p.thumbnail_date {{post.date | dateFilter}}
+      .thumbnail_wrapper
+        a.thumbnail(v-for="post in postList", :key="post.id" :href="post.link")
+          img.thumbnail_img(:src="post._embedded['wp:featuredmedia'][0].source_url")
+          h3.thumbnail_ttl {{post.title.rendered}}
+          p.thumbnail_date {{post.date | dateFilter}}
+
+    .dammyTrigger(ref="dammyTrigger")
+    .dammyNav(:class="{isHidden: this.isHidden}")
 
 </template>
 
@@ -19,9 +20,11 @@ import dayjs from 'dayjs'
 
 export default {
   async asyncData ({ params }) {
-    let { data } = await axios.get(`https://pronama.azurewebsites.net/wp-json/wp/v2/posts?_embed&page=1&per_page=6`)
+    let { data } = await axios.get(`https://pronama.azurewebsites.net/wp-json/wp/v2/posts?_embed&page=1&per_page=16`)
     return {
-      postList: data
+      postList: data,
+      scene: null,
+      isHidden: true
     }
   },
 
@@ -29,6 +32,24 @@ export default {
     dateFilter(value) {
       return dayjs(value).format('YYYY.MM.DD')
     }
+  },
+
+  mounted() {
+    this.scene = this.$scrollmagic.scene({
+      triggerElement: this.$refs.dammyTrigger,
+      triggerHook: 0.5,
+      duration: 0
+    })
+    .on("enter", (event) => {
+      console.log('enter')
+      this.isHidden = false
+    })
+    .on("leave", (event) => {
+      console.log('leave')
+      this.isHidden = true
+    })
+
+    this.$scrollmagic.addScene(this.scene)
   }
 }
 </script>
@@ -90,5 +111,25 @@ export default {
     color: #fff;
     background-color: #333;
     margin: 0 auto;
+  }
+
+  .dammyTrigger {
+    position: absolute;
+    top: 100vh;
+    width: 100vw;
+  }
+
+  .dammyNav {
+    width: 80px;
+    height: 80px;
+    border-radius: 500px;
+    background-color: #aaa;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: block;
+    &.isHidden {
+      display: none;
+    }
   }
 </style>
