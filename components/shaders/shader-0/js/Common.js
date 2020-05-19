@@ -65,7 +65,7 @@ class Common {
       this.renderer = new THREE.WebGLRenderer({
           canvas: $canvas
       })
-      this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer.setPixelRatio(this.ratio)
       this.renderer.setSize(this.width, this.height);
       this.renderer.setClearColor(0xffffff);
       this.light = new THREE.PointLight(0x000000)
@@ -73,18 +73,8 @@ class Common {
       this.scene.add(this.light)
       this.geo = new THREE.PlaneGeometry(2, 2, 1, 1)
       
-      // //Shaderに渡す値
-      // this.uniforms.uPixelRatio.value = window.devicePixelRatio
-      // this.uniforms.uAspect.value = this.size.windowW / this.size.windowH
-      // this.resolution.x = this.width
-      // this.resolution.y = this.height
-      // this.uPixelRatio = 1 / this.rario
-
       this.uniforms.uTex.value = THREE.ImageUtils.loadTexture('../lady.jpg')
       this.uniforms.uDepth.value = THREE.ImageUtils.loadTexture('../lady-map.jpg')
-
-      // this.resolution.x = this.size.windowW
-      // this.resolution.y = this.size.windowH
   
       this.mat = new THREE.ShaderMaterial({
           uniforms: this.uniforms,
@@ -107,8 +97,8 @@ class Common {
       this.height = this.container.offsetHeight
       this.ratio = window.devicePixelRatio
 
-      this.canvas.width = this.width * this.ratio
-      this.canvas.height = this.height * this.ratio
+      this.canvas.width = this.width
+      this.canvas.height = this.height
       this.canvas.style.width = this.width +'px'
       this.canvas.style.height = this.height + 'px'
       this.imageAspect = 853 / 1280
@@ -126,11 +116,12 @@ class Common {
       this.as.y = a2
 
       //Shaderに渡す値
-      this.uniforms.uPixelRatio.value = window.devicePixelRatio
       this.uniforms.uAspect.value = this.size.windowW / this.size.windowH
       this.resolution.x = this.width
       this.resolution.y = this.height
-      this.uPixelRatio = 1 / this.rario
+
+      let _ratio = 1 / this.ratio
+      this.uniforms.uPixelRatio.value = _ratio
     }
 
     Render(){
