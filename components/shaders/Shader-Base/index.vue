@@ -9,8 +9,7 @@ import MyShader from './js/MyShader'
 export default {
   mounted() {
     this.myShader = new MyShader({
-      $canvas: this.$refs.canvas,
-      $container: this.$refs.container
+      $canvas: this.$refs.canvas
     })
   }
 }
