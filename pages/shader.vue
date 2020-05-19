@@ -1,14 +1,16 @@
 <template lang="pug">
   .container
-    Shader0
+    ShaderBase
 </template>
 
 <script>
-import Shader0 from '~/components/shaders/shader-0/index.vue'
+import ShaderBase from '~/components/shaders/Shader-Base/index.vue'
+import ShaderFake3d from '~/components/shaders/Shader-Fake3d/index.vue'
 
 export default {
   components: {
-    Shader0
+    ShaderFake3d,
+    ShaderBase
   }
 }
 </script>

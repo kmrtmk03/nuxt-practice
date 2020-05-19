@@ -72,10 +72,7 @@ class Common {
       this.light.position.set(2, 2, 2)
       this.scene.add(this.light)
       this.geo = new THREE.PlaneGeometry(2, 2, 1, 1)
-      
-      this.uniforms.uTex.value = THREE.ImageUtils.loadTexture('../lady.jpg')
-      this.uniforms.uDepth.value = THREE.ImageUtils.loadTexture('../lady-map.jpg')
-  
+        
       this.mat = new THREE.ShaderMaterial({
           uniforms: this.uniforms,
           vertexShader: vertexShader,
@@ -101,7 +98,7 @@ class Common {
       this.canvas.height = this.height
       this.canvas.style.width = this.width +'px'
       this.canvas.style.height = this.height + 'px'
-      this.imageAspect = 853 / 1280
+      this.imageAspect = 3 / 4
 
       let a1,a2;
       if(this.height / this.width < this.imageAspect) {
