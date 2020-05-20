@@ -2,6 +2,8 @@
   .container
     h1 CSS Samples
     .style-0
+      .mask
+        img(src="~/assets/css-sample/img/sample.jpg")
 
 </template>
 
@@ -19,5 +21,11 @@ export default {
     font-weight: bold;
     font-size: 16px;
     padding: 10px 0;
+  }
+  .mask {
+    mask-image: url('~@/assets/css-sample/svg/sample.svg');
+    mask-repeat: no-repeat;
+    mask-size: 50%;
+    mask-position: top 50% left 30%;
   }
 </style>
