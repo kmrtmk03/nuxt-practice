@@ -18,6 +18,7 @@
     "dayjs": "^1.8.27",
     "node-sass": "^4.14.1",
     "nuxt": "^2.0.0",
+    "nuxt-svg-loader": "^1.2.0",
     "pixi.js": "^5.2.4",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
