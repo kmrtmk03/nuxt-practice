@@ -1,0 +1,60 @@
+$designwidth-sp: 750 / 100;
+$keyColor: #333;
+
+//fontsize
+@mixin fontsize-sp($_size) {
+  font-size: #{$_size / $designwidth-sp}vw;
+}
+
+//margin
+@mixin margin-top-sp($_size) {
+  margin-top: #{$_size / $designwidth-sp}vw;
+}
+@mixin margin-bottom-sp($_size) {
+  margin-bottom: #{$_size / $designwidth-sp}vw;
+}
+@mixin margin-left-sp($_size) {
+  margin-left: #{$_size / $designwidth-sp}vw;
+}
+@mixin margin-rright-sp($_size) {
+  margin-right: #{$_size / $designwidth-sp}vw;
+}
+
+//padding
+@mixin padding-top-sp($_size) {
+  padding-top: #{$_size / $designwidth-sp}vw;
+}
+@mixin padding-bottom-sp($_size) {
+  padding-bottom: #{$_size / $designwidth-sp}vw;
+}
+@mixin padding-left-sp($_size) {
+  padding-left: #{$_size / $designwidth-sp}vw;
+}
+@mixin padding-right-sp($_size) {
+  padding-right: #{$_size / $designwidth-sp}vw;
+}
+
+//width_height
+@mixin width-sp($_size) {
+  width: #{$_size / $designwidth-sp}vw;
+}
+@mixin height-sp($_size) {
+  height: #{$_size / $designwidth-sp}vw;
+}
+@mixin lineheight-sp($_size) {
+  line-height: #{$_size / $designwidth-sp}vw;
+}
+
+//position
+@mixin top-sp($_size) {
+  top: #{$_size / $designwidth-sp}vw;
+}
+@mixin bottom-sp($_size) {
+  bottom: #{$_size / $designwidth-sp}vw;
+}
+@mixin left-sp($_size) {
+  left: #{$_size / $designwidth-sp}vw;
+}
+@mixin right-sp($_size) {
+  right: #{$_size / $designwidth-sp}vw;
+}

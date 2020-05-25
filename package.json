@@ -12,6 +12,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
     "animejs": "^3.2.0",
     "axios": "^0.19.2",
     "cross-env": "^7.0.2",

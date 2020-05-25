@@ -110,20 +110,19 @@
     padding-top: 50px;
 
     > .svg-wrap {
-      // margin-bottom: 50px;
       text-align: right;
       width: 100vw;
 
       > svg {
         fill: transparent;
-        stroke: #333;
+        stroke: $keyColor;
         stroke-width: 1px;
         width: 60vw;
       }
     }
 
     .smallHeading {
-      background-color: #333;
+      background-color: $keyColor;
       color: #fff;
       font-size: 20px;
       font-weight: bold;
@@ -136,7 +135,7 @@
 
     .heading {
       font-size: 56px;
-      color: #333;
+      color: $keyColor;
 
       > span {
         background-color: #fff;
