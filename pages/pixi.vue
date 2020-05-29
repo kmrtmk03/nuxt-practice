@@ -19,11 +19,33 @@ export default {
       height: 0,
       app: null,
       pixiviewEl: null,
-      sprites: []
+      spritesInstance: [],
+      sprites: [],
+      spritesPosition: [
+        { x: 0.25, y: 0.25 },
+        { x: 0.25, y: 0.5 },
+        { x: 0.8, y: 0.1 },
+        { x: 0.9, y: 0.4 },
+        { x: 0.1, y: 0.3 },
+        { x: 0.6, y: 0.6 },
+        { x: 0.5, y: 0.3 },
+        { x: 0.2, y: 0.5 },
+      ]
     }
   },
   mounted: function() {
     this.Init()
+
+    //Resize
+    window.addEventListener('resize', () => {
+      //Canvas, Rendererの大きさ
+      this.app.renderer.resize(window.innerWidth, window.innerHeight)
+
+      for(let i = 0; i < this.spritesInstance.length; i++) {
+        // this.spritesInstance[i].ResizePositionFix(500, 200)
+        this.spritesInstance[i].ResizePosition(window.innerWidth, window.innerHeight, this.spritesPosition[i].x, this.spritesPosition[i].y)
+      }
+    })
   },
   methods: {
     Init() {
@@ -35,20 +57,16 @@ export default {
         height: this.height,
         backgroundColor: 0xeeeeee
       })
+
+      this.app.renderer.autoResize = true
+      this.app.stage.interactive = true
       
       this.pixiviewEl = document.getElementById('pixiview')
       this.pixiviewEl.appendChild(this.app.view)
 
-      //Spriteを生成
-      this.InitSprite(0, 'sample_img-0', 0.25, 0.25, -10, -10)
-      this.InitSprite(1, 'sample_img-0', 0.25, 0.5, -10, 0)
-      this.InitSprite(2, 'sample_img-0', 0.25, 0.75, -10, 10)
-      this.InitSprite(3, 'sample_img-0', 0.5, 0.75, 0, 10)
-      this.InitSprite(4, 'sample_img-0', 0.75, 0.75, 10, 10)
-      this.InitSprite(5, 'sample_img-0', 0.75, 0.5, 10, 0)
-      this.InitSprite(6, 'sample_img-0', 0.75, 0.25, 10, -10)
-      this.InitSprite(7, 'sample_img-0', 0.5, 0.25, 0, -10)
-
+      for(let i = 0; i < this.spritesPosition.length; i++) {
+        this.InitSprite(i, 'sample_img-0', this.spritesPosition[i].x, this.spritesPosition[i].y, 0, 0)
+      }
 
       //Test
       this.sprites[0].transform.position.x -= 200
@@ -60,7 +78,9 @@ export default {
       const w = this.app.screen.width
       const h = this.app.screen.height
 
-      this.sprites[_id] = new MySprite(img, w, h, _posX, _posY, _moveX, _moveY).GetSprite()
+      this.spritesInstance[_id] = new MySprite(img, w, h, _posX, _posY, _moveX, _moveY) 
+
+      this.sprites[_id] = this.spritesInstance[_id].GetSprite()
 
       //Spriteを配置
       this.app.stage.addChild(this.sprites[_id]);
