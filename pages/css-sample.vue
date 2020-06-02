@@ -29,6 +29,8 @@
 
       .style-2
         span.style-2-skew
+        span.style-2-skew2
+        span.style-2-skew3
         .section-inner
           p.smallHeading ダミーの小見出し
           h2.heading
@@ -253,6 +255,31 @@
       z-index: 1;
     }
 
+    &-skew2 {
+      content: '';
+      display: block;
+      width: 70vw;
+      height: 2vh;
+      position: absolute;
+      top: 90vh;
+      left: 5vw;
+      background-color: #eee;
+      transform: skewY(10deg);
+      z-index: 1;
+    }
+    &-skew3 {
+      content: '';
+      display: block;
+      width: 40vw;
+      height: 2vh;
+      position: absolute;
+      top: 90vh;
+      left: 5vw;
+      background-color: #ddd;
+      transform: skewY(10deg);
+      z-index: 1;
+    }
+
     .section-inner {
       position: relative;
       z-index: 2;
@@ -275,7 +302,7 @@
       color: $keyColor;
 
       > span {
-        background-color: #eee;
+        background-color: #fff;
         padding: 0px 10px;
         margin-bottom: 10px;
         display: inline-block;
