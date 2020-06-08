@@ -26,7 +26,7 @@
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
-          .button Readmore
+          .button READ MORE
 
       .style-2
         span.style-2-skew
@@ -42,7 +42,7 @@
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
-          .button Readmore
+          .button READ MORE
       
       .style-3
         ul.grid-container
@@ -246,7 +246,8 @@
     }
 
     .button {
-      background-color: $keyColor;
+      // background-color: $keyColor;
+      @include gradient();
       color: #fff;
       width: 240px;
       height: 50px;
@@ -254,6 +255,7 @@
       text-align: center;
       border-radius: 50px;
       margin-top: 50px;
+      font-weight: bold;
     }
   }
 
@@ -372,14 +374,17 @@
     }
 
     .button {
-      background-color: $keyColor;
+      background-color: rgba(0, 0, 0, 0);
+      border: 2px solid #fff;
+      box-sizing: border-box;
       color: #fff;
       width: 240px;
       height: 50px;
-      line-height: 50px;
+      line-height: 46px;
       text-align: center;
       border-radius: 50px;
       margin: 50px 0 0 auto;
+      font-weight: bold;
     }
   }
 
