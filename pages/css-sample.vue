@@ -1,5 +1,6 @@
 <template lang="pug">
-  .container
+  .container(ref="container")
+    .scrollbar(ref="scrollbar")
     .container-inner
       .style-0
         .mask(:class="{visible: isMaskVisible}")
@@ -42,6 +43,18 @@
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
             | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
           .button Readmore
+      
+      .style-3
+        ul.grid-container
+          li.grid-item.grid-item-a
+            h4.heading 見出しA
+            p.content
+              | 本文です。本文です。本文です。本文です。本文です。本文です。本文です。
+          li.grid-item.grid-item-b
+            h4.heading 見出しB
+          li.grid-item.grid-item-c
+            h4.heading 見出しC
+
 
 </template>
 
@@ -49,12 +62,29 @@
 <script>
   import SampleSvg from '~/assets/css-sample/svg/sample.svg'
   import anime from 'animejs'
+  import Scrollbar from '~/assets/css-sample/js/Scrollbar.js'
+
+  let PIXI
+  if(process.client) {
+    PIXI = require('pixi.js')
+  }
 
   export default {
     data() {
       return {
         isMaskVisible: false,
-        imgTranslateY: 0
+        imgTranslateY: 0,
+        scrollbar: null,
+        scrollbarSize: {
+          width: 0,
+          height: 0
+        },
+        scrollbarView: null,
+        scrollAmount: 0,
+        scrollHeight: 0,
+        circle: null,
+        dragScrollbar: false,
+        scrollbarPersent: 0
       }
     },
     components: {
@@ -65,6 +95,8 @@
       this.StartLineAnim()  
       window.addEventListener('scroll', this.OnScroll)
 
+      //ScrollBar
+      new Scrollbar(this.$refs.scrollbar, this.$refs.container)
     },
     methods: {
       OnMask() {
@@ -72,6 +104,7 @@
       },
 
       OnScroll() {
+        //pallax image
         this.imgTranslateY = window.pageYOffset * 0.3
       },
 
@@ -94,6 +127,16 @@
   .container {
     min-height: 100vh;
     background-color: #eee;
+  }
+
+  .scrollbar {
+    width: 5vw;
+    height: 300px;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
   }
 
   .container-inner {
@@ -185,10 +228,10 @@
 
     .heading {
       font-size: 56px;
-      color: $keyColor;
+      color: #fff;
 
       > span {
-        background-color: #eee;
+        @include gradient();
         padding: 0px 10px;
         margin-bottom: 10px;
         display: inline-block;
@@ -250,7 +293,7 @@
       position: absolute;
       top: 80px;
       left: 0;
-      background-color: #ccc;
+      @include gradient();
       transform: skewY(10deg);
       z-index: 1;
     }
@@ -337,6 +380,52 @@
       text-align: center;
       border-radius: 50px;
       margin: 50px 0 0 auto;
+    }
+  }
+
+  .style-3 {
+    background-color: #fff;
+    min-height: 100vh;
+  }
+
+  .grid {
+    &-container {
+      display: grid;
+      grid-template-rows: 19vw 19vw 19vw;
+      grid-template-columns: 19vw 19vw 19vw 19vw 19vw;
+      grid-template-areas:
+       "areaA areaA areaB areaB areaB"
+       "areaA areaA areaB areaB areaB"
+       "areaA areaA areaC areaC areaC"
+    }
+
+    &-item {
+      padding: 10px;
+
+      .heading {
+        color: #333;
+        text-align: center;
+        font-size: 48px;
+      }
+      &-a {
+        background-color: rgba(0, 0, 0, 0.7);
+        grid-area: areaA;
+        color: #fff;
+        .heading {
+          color: #fff;
+          font-size: 60px;
+          margin-bottom: 20px;
+        }
+      }
+      &-b {
+        background-color: #ccc;
+        grid-area: areaB;
+
+      }
+      &-c {
+        background-color: #ddd;
+        grid-area: areaC;
+      }
     }
   }
 </style>

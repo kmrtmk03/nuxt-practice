@@ -58,3 +58,8 @@ $keyColor: #333;
 @mixin right-sp($_size) {
   right: #{$_size / $designwidth-sp}vw;
 }
+
+
+@mixin gradient() {
+  background: linear-gradient(150deg, #C0FFC0 0%, #FF82E9 100%) no-repeat 50% 50% / 100% 100%;
+}

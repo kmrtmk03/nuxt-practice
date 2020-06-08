@@ -48,7 +48,8 @@ export default {
 
   styleResources: {
     scss: [
-      '~assets/common/scss/_variable.scss'
+      '~assets/common/scss/_variable.scss',
+      '~assets/common/scss/_reset.scss',
     ]
   },
 
