@@ -17,7 +17,7 @@
         .section-inner
           .mask
             span.bg-img
-          p.smallHeading ダミーの小見出し
+          p.smallHeading INTERACTIVE
           h2.heading
             | <span>ダミーの見出し</span><br>
             | <span>ダミーの見出し、ダミーの見出し</span>
@@ -33,7 +33,7 @@
         span.style-2-skew2
         span.style-2-skew3
         .section-inner
-          p.smallHeading ダミーの小見出し
+          p.smallHeading WEB
           h2.heading
             | <span>ダミーの見出し</span><br>
             | <span>ダミーの見出し、ダミーの見出し</span>
@@ -52,6 +52,8 @@
               | 本文です。本文です。本文です。本文です。本文です。本文です。本文です。
           li.grid-item.grid-item-b
             h4.heading 見出しB
+              .blur-wrap
+                .button-0
           li.grid-item.grid-item-c
             h4.heading 見出しC
 
@@ -72,7 +74,7 @@
   export default {
     data() {
       return {
-        isMaskVisible: false,
+        isMaskVisible: true,
         imgTranslateY: 0,
         scrollbar: null,
         scrollbarSize: {
@@ -159,6 +161,9 @@
     background-color: #fff;
     overflow: hidden;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .mask {
       mask-image: url('~@/assets/css-sample/img/sample.png');
@@ -261,7 +266,7 @@
 
   .style-2 {
     background-color: #fff;
-    padding: 220px 0 600px;
+    padding: 220px 0 400px;
     margin: 5vw 0 0;
     min-height: 100vh;
     text-align: right;
@@ -385,52 +390,178 @@
       border-radius: 50px;
       margin: 50px 0 0 auto;
       font-weight: bold;
+
+      &:hover {
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        transition: 0.5s;
+      }
     }
   }
 
   .style-3 {
     background-color: #fff;
-    min-height: 100vh;
-  }
-
-  .grid {
-    &-container {
-      display: grid;
-      grid-template-rows: 19vw 19vw 19vw;
-      grid-template-columns: 19vw 19vw 19vw 19vw 19vw;
-      grid-template-areas:
-       "areaA areaA areaB areaB areaB"
-       "areaA areaA areaB areaB areaB"
-       "areaA areaA areaC areaC areaC"
-    }
-
-    &-item {
-      padding: 10px;
-
-      .heading {
-        color: #333;
-        text-align: center;
-        font-size: 48px;
+    position: relative;
+    z-index: 2;
+    
+    .grid {
+      &-container {
+        display: grid;
+        grid-template-rows: 19vw 19vw;
+        grid-template-columns: 23.75vw 23.75vw 23.75vw 23.75vw;
+        grid-template-areas:
+        "areaA areaA areaA areaA"
+        "areaB areaB areaC areaC"
       }
-      &-a {
-        background-color: rgba(0, 0, 0, 0.7);
-        grid-area: areaA;
-        color: #fff;
+
+      &-item {
+        padding: 10px;
+
         .heading {
+          color: #333;
+          text-align: center;
+          font-size: 48px;
+        }
+        &-a {
+          background-color: rgba(0, 0, 0, 0.7);
+          grid-area: areaA;
           color: #fff;
-          font-size: 60px;
-          margin-bottom: 20px;
+          .heading {
+            color: #fff;
+            font-size: 60px;
+            margin-bottom: 20px;
+          }
+        }
+        &-b {
+          background-color: #ccc;
+          grid-area: areaB;
+
+        }
+        &-c {
+          background-color: #ddd;
+          grid-area: areaC;
         }
       }
-      &-b {
-        background-color: #ccc;
-        grid-area: areaB;
+    }
 
+    .button-0 {
+      width: 180px;
+      height: 60px;
+      margin: 0 auto;
+      position: relative;
+
+      @mixin Giji() {
+        content: '';
+        display: block;
+        position: absolute;
       }
-      &-c {
-        background-color: #ddd;
-        grid-area: areaC;
+            
+      &:hover {
+        cursor: pointer;
+        &::before {
+          animation-name: beforeAnim;
+          animation-duration: .3s;
+          animation-timing-function: ease;
+          animation-fill-mode: forwards;
+        }
+        &::after {
+          animation-name: afterAnim;
+          animation-duration: .3s;
+          animation-timing-function: ease;
+          animation-fill-mode: forwards;
+        }
+      }
+      @keyframes beforeAnim {
+        0% {
+          width: 160px;
+          height: 40px;
+          left: 10px;
+          top: 10px;
+        }
+        80% {
+          width: 160px;
+          height: 40px;
+          left: 10px;
+          top: 10px;
+        }
+        90% {
+          width: 170px;
+          height: 50px;
+          left: 0px;
+          top: 0px;
+        }
+        100% {
+          width: 160px;
+          height: 40px;
+          left: 10px;
+          top: 10px;
+        }
+      }
+
+      @keyframes afterAnim {
+        0% {
+          $height: 40px;
+          width: 160px;
+          height: $height;
+          line-height: $height;
+          left: 10px;
+          top: 10px;
+        }
+        80% {
+          $height: 48px;
+          width: 168px;
+          height: $height;
+          line-height: $height;
+          left: 6px;
+          top: 6px;
+        }
+        90% {
+          $height: 60px;
+          width: 180px;
+          height: $height;
+          line-height: $height;
+          left: 0px;
+          top: 0px;
+        }
+        100% {
+          $height: 50px;
+          width: 170px;
+          height: $height;
+          line-height: $height;
+          left: 5px;
+          top: 5px;
+        }
+      }
+
+      &::before {
+        @include Giji();
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 5vw;
+        border: 3px solid #ccc;
+        z-index: 2;
+        width: 160px;
+        height: 40px;
+        left: 10px;
+        top: 10px;
+      }
+      
+      &::after {
+        $height: 40px;
+        @include Giji();
+        width: 160px;
+        height: $height;
+        content: 'READ MORE';
+        color: #fff;
+        line-height: $height;
+        font-size: 12px;
+        border-radius: 4vw;
+        left: 10px;
+        top: 10px;
+        @include gradient();
+        z-index: 1;
       }
     }
   }
+
 </style>
