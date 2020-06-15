@@ -1,0 +1,567 @@
+<template lang="pug">
+  .container(ref="container")
+    .scrollbar(ref="scrollbar")
+    .container-inner
+      .style-0
+        .mask(:class="{visible: isMaskVisible}")
+          img(src="~/assets/css-sample/img/sample.jpg" :style="{ transform: 'translateY(' + this.imgTranslateY + 'px)'}")
+      
+      .style-1
+        .svg-wrap
+          svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 978 231.58" style="enable-background:new 0 0 978 231.58;" xml:space="preserve")
+            path(d="M839.42,156.76c1.53,0,6.11,0.25,6.11,4.07c0,4.33-3.82,4.33-6.11,4.33h-17.56c-7.38,0-7.38,4.07-7.38,15.01 c0,15.52,0,24.18,13.49,25.19c8.4,0.76,10.43,0.76,10.43,4.58c0,3.82-4.58,3.82-6.87,3.82h-57.26c-2.04,0-6.11-0.25-6.11-3.82 c0-4.33,3.31-4.33,8.65-4.33c17.31,0,17.31-9.16,17.31-25.19c0-10.43,0-15.27-6.87-15.27h-57.26c-3.05,0-6.11,0-6.11-4.58 c0-2.54,0.51-3.31,5.09-10.69c5.6-9.42,65.66-109.68,67.18-112.48c7.63-12.47,8.4-14,12.47-14c1.53,0,3.56,0.76,4.84,2.54 c1.53,2.8,1.53,31.81,1.53,37.41c0,9.67-0.76,57.26-0.76,67.95c0,22.9,0,25.45,7.13,25.45H839.42z M787.25,156.76 c4.07,0,6.11-2.54,6.62-5.6c0.25-2.29,0.25-30.28,0.25-45.3c0-3.56-0.51-37.15-0.51-37.66c0-0.76-0.51-3.56-2.04-3.56 c-1.27,0-5.34,6.36-6.87,8.91c-5.34,9.16-47.59,78.64-47.59,80.67c0,1.53,1.53,2.54,5.09,2.54H787.25z")
+            path(d="M30.54,203.33c-1.53,0-6.87,0-7.38,5.34c-0.51,6.62-1.02,13.74-12.22,13.74c-8.4,0-8.91-5.09-8.91-9.42 c0-1.02,1.53-51.92,1.53-61.59c0-27.74,0-88.31-2.04-114.01C1.27,35.12,0,24.43,0,22.14c0-1.27,0.25-2.04,1.53-2.04 c1.02,0,2.29,0.51,11.96,5.34c7.13,3.31,8.4,3.56,12.72,3.56h77.87c5.34,0,7.38,0,9.16-2.54c3.82-5.34,4.84-6.62,7.38-6.62 c3.56,0,22.14,11.96,22.14,15.78c0,1.78-1.27,2.8-5.6,6.62c-3.31,2.54-4.58,4.33-4.58,16.54c0,27.23,0.25,31.81,0.51,54.2 c0.25,14.51,2.04,78.89,2.04,92.12c0,8.91-5.85,14-12.72,14c-0.76,0-7.38,0-8.14-9.67c-0.25-4.33-0.25-6.11-5.34-6.11H30.54z M106.88,110.95c7.38,0,7.38-4.84,7.38-8.14c0-3.05-0.76-62.35-1.27-63.62c-1.53-3.31-4.84-3.31-6.36-3.31H27.99 c-3.56,0-5.6,2.29-5.85,3.82c-0.51,2.04-0.51,57.26-0.51,61.84c0,4.84,0.25,9.42,7.13,9.42H106.88z M106.63,196.46 c2.29,0,6.87,0,7.38-5.34c0.25-1.53,0.25-58.02,0.25-63.88c0-5.34-0.51-9.67-7.38-9.67H29.01c-6.62,0-7.38,3.82-7.38,8.91 c0,8.4,0.76,49.37,0.76,58.53c0,8.14,0.76,11.45,7.63,11.45H106.63z")
+            path(d="M978,151.42c0,36.39-26.47,67.18-54.46,67.18c-27.23,0-58.53-31.3-58.53-87.29c0-59.29,34.1-107.9,72.53-107.9 c15.52,0,28.5,9.42,28.5,21.38c0,8.91-7.38,12.72-13.23,12.72c-4.58,0-13.49-2.8-14-17.05c-0.25-5.09-0.76-8.65-7.38-8.65 c-24.43,0-42.75,48.86-42.75,82.71c0,1.02,0,5.09,1.78,5.09c0.76,0,1.27-0.76,6.36-5.85c5.6-5.85,16.8-17.31,35.63-17.31 C956.11,96.45,978,118.84,978,151.42z M889.44,149.13c0,26.21,12.98,61.33,33.08,61.33c11.71,0,32.57-14,32.57-55.73 c0-12.72-2.29-47.08-29.78-47.08C914.63,107.65,889.44,121.39,889.44,149.13z")
+            path(d="M456.93,79.14c-1.02-1.27-1.27-1.27-1.27-1.78c0-0.25,0.51-0.51,1.02-0.51c5.09,0,27.99,1.78,32.57,1.78 c7.13,0,7.63-2.8,7.63-6.11c0-31.81,0-42.24-0.51-47.59c0-2.04-2.8-10.94-2.8-12.72s1.53-3.05,3.05-3.05 c1.78,0,15.78,5.6,18.83,6.87c6.87,2.8,7.63,3.05,7.63,5.6c0,1.78-0.51,2.29-5.34,6.87c-0.76,0.76-1.02,1.78-1.27,3.56 c0,2.29-0.76,31.05-0.76,33.85c0,8.4,0,11.45,4.33,11.45c3.05,0,5.09-2.8,5.6-3.82c4.07-7.63,4.58-8.65,6.36-8.65 c4.58,0,19.34,12.47,19.34,16.8c0,3.56-4.58,3.56-13.49,3.56h-12.98c-4.58,0-9.16,0-9.16,6.36c0,7.63,0,56.75,0.76,58.79 c1.02,3.56,4.58,3.56,5.34,3.56c4.33,0,26.47-7.38,26.72-7.38c0.76,0,1.02,0.51,1.02,1.02c0,1.27-6.87,5.09-8.65,6.11 c-9.16,5.6-58.28,31.3-60.06,32.32c-1.27,1.53-4.33,5.34-5.09,6.11c-0.76,0.76-2.29,2.04-3.82,2.04c-2.8,0-4.58-3.56-6.36-7.38 c-1.27-2.8-9.67-19.6-9.67-20.36c0-1.53,1.02-2.54,2.8-2.54c1.53,0,8.14,1.02,9.67,1.02c1.27,0,25.96-1.27,28.25-7.38 c0.76-2.04,0.76-34.61,0.76-38.94c0-6.11,0-28.25-1.02-30.54c-1.27-2.8-4.84-2.8-7.63-2.8c-2.8,0-15.78,0.51-21.12,1.02 c-1.27,0-3.05,0.25-3.56,0.25c-0.76,0-1.53-0.51-2.29-1.53L456.93,79.14z M639.9,21.63c10.18,0,11.96-0.25,13.49-2.29 c1.78-2.29,8.65-15.52,11.2-15.52c1.53,0,24.18,17.05,24.18,20.87c0,3.56-4.84,3.56-13.74,3.56h-92.63 c-8.14,0-8.14,2.54-8.14,17.05c0,24.68,0,25.19,7.63,25.19h58.02c4.33,0,7.13-0.25,10.69-4.58c2.04-2.54,3.05-3.31,4.58-3.31 c2.29,0,18.58,13.74,18.58,18.83c0,4.58-3.82,4.58-5.09,4.58c-4.07,0-5.6,0.51-6.62,4.33c-6.36,24.18-15.52,46.06-25.7,62.6 c-1.27,2.04-2.8,4.58-2.8,7.13c0,5.85,25.96,36.65,49.88,49.37c1.78,1.02,11.2,5.09,11.2,5.85c0,0.51-0.51,1.02-1.02,1.02 c-1.27,0-8.65-1.53-10.18-1.53c-5.09,0-14,2.04-21.12,6.36c-1.27,0.76-4.07,3.31-5.09,3.31c-2.04,0-21.63-25.7-23.92-29.27 c-1.27-2.04-6.87-10.69-8.14-12.98c-0.76-1.02-2.54-3.56-4.58-3.56c-2.55,0-3.56,1.78-4.84,3.31 c-32.32,37.66-64.38,47.33-66.17,47.33c-0.76,0-1.27-0.51-1.27-1.02c0-0.51,11.2-7.89,13.23-9.42 c30.79-23.67,50.39-53.95,50.39-58.79c0-1.78-0.25-2.8-4.07-11.45c-9.67-22.39-13.49-40.97-17.56-66.42 c-0.25-1.53-1.02-5.09-6.62-5.09c-5.6,0-9.67,0-9.67,7.38c-0.51,88.31-27.74,120.63-53.19,140.73c-3.05,2.29-8.65,5.6-9.92,5.6 c-1.02,0-1.27-0.51-1.27-1.02c0-0.51,6.87-7.13,8.14-8.4c35.12-39.96,38.94-91.62,38.94-150.91c0-11.45-0.25-39.44-2.29-49.37 c-0.25-1.27-2.29-8.14-2.29-8.65c0-1.02,0.51-1.78,1.78-1.78c1.78,0,9.67,3.05,16.8,6.36c8.91,4.33,9.93,4.58,15.02,4.58H639.9z M602.49,77.11c-2.29,0-5.34,0-5.34,4.33c0,1.27,0.51,4.33,1.02,6.11c4.33,19.09,6.36,22.65,16.29,43.52 c4.33,8.91,4.33,9.67,6.62,9.67c2.8,0,3.56-1.53,9.16-15.52c8.4-20.36,14-38.43,14-43.01c0-5.09-3.82-5.09-6.62-5.09H602.49z")
+            path(d="M257.23,52.93c8.4,0,9.92-1.27,14.25-7.38c6.36-8.91,17.31-32.06,18.83-38.43c1.02-4.84,1.27-7.13,3.05-7.13 c1.02,0,17.81,10.43,18.83,11.2c1.27,1.02,6.87,4.84,6.87,7.38c0,2.04-0.76,2.29-7.13,3.05c-4.84,0.76-34.1,28.25-34.1,29.27 c0,2.04,1.53,2.04,4.07,2.04h103.32c4.84,0,6.87-1.78,8.4-3.82c3.05-4.07,4.07-5.09,5.34-5.09c2.8,0,20.87,14,20.87,17.56 c0,1.27-1.53,2.54-2.04,3.05c-6.36,5.09-7.89,6.36-8.14,14.51c-0.25,7.38-0.25,12.47-0.25,59.55c0,9.67,0.76,57.51,0.76,68.46 c0,8.91-2.55,14.51-10.43,19.34c-2.54,1.53-8.65,4.58-12.47,4.58c-2.04,0-4.58-0.76-5.09-2.8c-1.27-5.34-1.53-6.36-3.56-7.89 c-2.54-1.78-18.32-7.63-18.32-9.67c0-1.27,2.29-1.27,2.8-1.27c2.29,0,12.98,1.02,15.52,1.02c13.23,0,13.23-2.54,13.23-21.89 c0-7.13,0.51-40.97,0.51-48.61c0-9.67-0.25-59.04-0.25-68.71c0-8.65,0-11.71-7.89-11.71H237.64c-3.05,0-6.62,0-8.14,3.05 c-1.53,3.05-1.53,40.97-1.53,48.35c0,15.02,1.02,88.56,1.02,105.1c0,7.13,0,15.52-15.01,15.52c-5.6,0-7.13-1.53-7.13-5.85 c0-10.18,1.53-26.21,2.29-36.39c0.51-8.65,1.27-91.1,1.27-92.89c0-8.14,0-23.67-1.27-37.15c-0.25-1.78-2.04-10.69-2.04-12.47 c0-0.51,0.51-1.02,1.27-1.02c3.05,0,7.38,2.04,14.25,4.84c4.58,2.04,9.67,2.29,14,2.29H257.23z M289.55,176.87 c-6.36,0-6.36,0.76-6.36,7.13c0,7.13-5.85,10.69-12.72,10.69c-5.09,0-6.87-1.78-6.87-7.13c0-1.27,1.78-46.06,1.78-54.71 c0-2.8,0.25-11.96-0.51-25.19c0-2.04-1.53-11.45-1.53-13.49c0-2.29,0.76-4.07,3.05-4.07c2.54,0,14,5.85,16.8,6.36 c3.05,0.76,5.09,0.76,7.13,0.76h40.97c3.05,0,5.6,0,7.13-1.53c3.82-3.56,5.34-5.09,7.13-5.09c3.31,0,15.27,7.89,15.27,12.22 c0,1.78-5.6,9.16-6.11,10.94c-0.51,1.78-0.51,22.39-0.51,25.96c0,5.6,0.51,33.59,0.51,39.7c0,5.09,0,14.25-12.98,14.25 c-5.85,0-5.85-1.27-5.85-12.47c0-4.33-2.8-4.33-5.09-4.33H289.55z M329,170.25c2.04,0,5.85,0,7.13-3.05 c1.02-3.05,1.02-40.46,1.02-45.04c0-16.29,0-18.32-7.63-18.32h-39.95c-7.63,0-7.63,4.07-7.63,10.94c0,3.56,0,49.37,1.27,52.42 c1.27,3.05,4.84,3.05,7.13,3.05H329z")
+        .section-inner
+          .mask
+            span.bg-img
+          p.smallHeading INTERACTIVE
+          h2.heading
+            | <span>ダミーの見出し</span><br>
+            | <span>ダミーの見出し、ダミーの見出し</span>
+          p.content
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+          .button READ MORE
+
+      .style-2
+        span.style-2-skew
+        span.style-2-skew2
+        span.style-2-skew3
+        .section-inner
+          p.smallHeading WEB
+          h2.heading
+            | <span>ダミーの見出し</span><br>
+            | <span>ダミーの見出し、ダミーの見出し</span>
+          p.content
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+            | 本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。本文です、本文です。
+          .button READ MORE
+      
+      .style-3
+        ul.grid-container
+          li.grid-item.grid-item-a
+            h4.heading 見出しA
+            p.content
+              | 本文です。本文です。本文です。本文です。本文です。本文です。本文です。
+          li.grid-item.grid-item-b
+            h4.heading 見出しB
+              .blur-wrap
+                .button-0
+          li.grid-item.grid-item-c
+            h4.heading 見出しC
+
+
+</template>
+
+
+<script>
+  import SampleSvg from '~/assets/css-sample/svg/sample.svg'
+  import anime from 'animejs'
+  import Scrollbar from '~/assets/css-sample/js/Scrollbar.js'
+
+  let PIXI
+  if(process.client) {
+    PIXI = require('pixi.js')
+  }
+
+  export default {
+    data() {
+      return {
+        isMaskVisible: true,
+        imgTranslateY: 0,
+        scrollbar: null,
+        scrollbarSize: {
+          width: 0,
+          height: 0
+        },
+        scrollbarView: null,
+        scrollAmount: 0,
+        scrollHeight: 0,
+        circle: null,
+        dragScrollbar: false,
+        scrollbarPersent: 0
+      }
+    },
+    components: {
+      SampleSvg
+    },
+    mounted() {
+      this.OnMask()
+      this.StartLineAnim()  
+      window.addEventListener('scroll', this.OnScroll)
+
+      //ScrollBar
+      new Scrollbar(this.$refs.scrollbar, this.$refs.container)
+    },
+    methods: {
+      OnMask() {
+        this.isMaskVisible = true
+      },
+
+      OnScroll() {
+        //pallax image
+        this.imgTranslateY = window.pageYOffset * 0.3
+      },
+
+      StartLineAnim() {
+        let _anim = anime({
+          targets: '.svg-wrap svg path',
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: 'linear',
+          duration: 2000,
+          delay: function(el, i) { return i * 500 },
+          direction: 'alternate',
+          loop: true
+        })
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .container {
+    min-height: 100vh;
+    background-color: #eee;
+  }
+
+  .scrollbar {
+    width: 5vw;
+    height: 300px;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+  }
+
+  .container-inner {
+    width: 95vw;
+  }
+
+  .section-inner {
+    margin: 0 auto;
+    width: 960px;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .style-0 {
+    background-color: #fff;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mask {
+      mask-image: url('~@/assets/css-sample/img/sample.png');
+      mask-repeat: no-repeat;
+      mask-size: 50%;
+      mask-position: top 50% left -100%;
+
+      &.visible {
+        mask-position: top 50% left 50%;
+        transition: 2s;
+      }
+
+      & > img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  .style-1 {
+    background-color: #fff;
+    min-height: 100vh;
+    padding: 100px 0 350px;
+    position: relative;
+
+    .mask {
+      mask-image: url('~@/assets/css-sample/img/section1-mask.png');
+      mask-repeat: no-repeat;
+      width: 860px;
+      height: 575px;
+      position: absolute;
+      bottom: -20px;
+      right: -5vw;
+      z-index: 0;
+    }
+    .bg-img {
+      background-image: url("~@/assets/css-sample/img/sample.jpg");
+      background-size: cover;
+      width: 860px;
+      height: 575px;
+      display: block;
+    }
+
+    .svg-wrap {
+      text-align: right;
+      width: 100%;
+
+      svg {
+        fill: transparent;
+        stroke: $keyColor;
+        stroke-width: 1px;
+        width: 60vw;
+      }
+    }
+
+    .smallHeading {
+      background-color: $keyColor;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: -10px;
+      padding: 10px 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .heading {
+      font-size: 56px;
+      color: #fff;
+
+      > span {
+        @include gradient();
+        padding: 0px 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+        position: relative;
+      }
+    }
+
+    .content {
+      margin-top: 40px;
+      width: 40vw;
+      padding: 10px;
+    }
+
+    .button {
+      // background-color: $keyColor;
+      @include gradient();
+      color: #fff;
+      width: 240px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      border-radius: 50px;
+      margin-top: 50px;
+      font-weight: bold;
+    }
+  }
+
+  .style-2 {
+    background-color: #fff;
+    padding: 220px 0 400px;
+    margin: 5vw 0 0;
+    min-height: 100vh;
+    text-align: right;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      height: 5vw;
+      background-color: #fff;
+      position: absolute;
+      top: -5vw;
+    }
+
+    &::before {
+      width: 5vw;
+      right: -5vw;
+    }
+
+    &::after {
+      width: 25vw;
+      left: 0;
+    }
+
+    &-skew {
+      content: '';
+      display: block;
+      width: 95vw;
+      height: 100vh;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      @include gradient();
+      transform: skewY(10deg);
+      z-index: 1;
+    }
+
+    &-skew2 {
+      content: '';
+      display: block;
+      width: 70vw;
+      height: 2vh;
+      position: absolute;
+      top: 90vh;
+      left: 5vw;
+      background-color: #eee;
+      transform: skewY(10deg);
+      z-index: 1;
+    }
+    &-skew3 {
+      content: '';
+      display: block;
+      width: 40vw;
+      height: 2vh;
+      position: absolute;
+      top: 90vh;
+      left: 5vw;
+      background-color: #ddd;
+      transform: skewY(10deg);
+      z-index: 1;
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .smallHeading {
+      background-color: $keyColor;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: -10px;
+      padding: 10px 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .heading {
+      font-size: 56px;
+      color: $keyColor;
+
+      > span {
+        background-color: #fff;
+        padding: 0px 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+    }
+
+    .content {
+      width: 40vw;
+      padding: 10px;
+      text-align: left;
+      margin: 40px 0 0 auto;
+    }
+
+    .button {
+      background-color: rgba(0, 0, 0, 0);
+      border: 2px solid #fff;
+      box-sizing: border-box;
+      color: #fff;
+      width: 240px;
+      height: 50px;
+      line-height: 46px;
+      text-align: center;
+      border-radius: 50px;
+      margin: 50px 0 0 auto;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  .style-3 {
+    background-color: #fff;
+    position: relative;
+    z-index: 2;
+    
+    .grid {
+      &-container {
+        display: grid;
+        grid-template-rows: 19vw 19vw;
+        grid-template-columns: 23.75vw 23.75vw 23.75vw 23.75vw;
+        grid-template-areas:
+        "areaA areaA areaA areaA"
+        "areaB areaB areaC areaC"
+      }
+
+      &-item {
+        padding: 10px;
+
+        .heading {
+          color: #333;
+          text-align: center;
+          font-size: 48px;
+        }
+        &-a {
+          background-color: rgba(0, 0, 0, 0.7);
+          grid-area: areaA;
+          color: #fff;
+          .heading {
+            color: #fff;
+            font-size: 60px;
+            margin-bottom: 20px;
+          }
+        }
+        &-b {
+          background-color: #ccc;
+          grid-area: areaB;
+
+        }
+        &-c {
+          background-color: #ddd;
+          grid-area: areaC;
+        }
+      }
+    }
+
+    .button-0 {
+      width: 180px;
+      height: 60px;
+      margin: 0 auto;
+      position: relative;
+
+      @mixin Giji() {
+        content: '';
+        display: block;
+        position: absolute;
+      }
+            
+      &:hover {
+        cursor: pointer;
+        &::before {
+          animation-name: beforeAnim;
+          animation-duration: .3s;
+          animation-timing-function: ease;
+          animation-fill-mode: forwards;
+        }
+        &::after {
+          animation-name: afterAnim;
+          animation-duration: .3s;
+          animation-timing-function: ease;
+          animation-fill-mode: forwards;
+        }
+      }
+      @keyframes beforeAnim {
+        0% {
+          width: 160px;
+          height: 40px;
+          left: 10px;
+          top: 10px;
+        }
+        80% {
+          width: 160px;
+          height: 40px;
+          left: 10px;
+          top: 10px;
+        }
+        90% {
+          width: 170px;
+          height: 50px;
+          left: 0px;
+          top: 0px;
+        }
+        100% {
+          width: 160px;
+          height: 40px;
+          left: 10px;
+          top: 10px;
+        }
+      }
+
+      @keyframes afterAnim {
+        0% {
+          $height: 40px;
+          width: 160px;
+          height: $height;
+          line-height: $height;
+          left: 10px;
+          top: 10px;
+        }
+        80% {
+          $height: 48px;
+          width: 168px;
+          height: $height;
+          line-height: $height;
+          left: 6px;
+          top: 6px;
+        }
+        90% {
+          $height: 60px;
+          width: 180px;
+          height: $height;
+          line-height: $height;
+          left: 0px;
+          top: 0px;
+        }
+        100% {
+          $height: 50px;
+          width: 170px;
+          height: $height;
+          line-height: $height;
+          left: 5px;
+          top: 5px;
+        }
+      }
+
+      &::before {
+        @include Giji();
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 5vw;
+        border: 3px solid #ccc;
+        z-index: 2;
+        width: 160px;
+        height: 40px;
+        left: 10px;
+        top: 10px;
+      }
+      
+      &::after {
+        $height: 40px;
+        @include Giji();
+        width: 160px;
+        height: $height;
+        content: 'READ MORE';
+        color: #fff;
+        line-height: $height;
+        font-size: 12px;
+        border-radius: 4vw;
+        left: 10px;
+        top: 10px;
+        @include gradient();
+        z-index: 1;
+      }
+    }
+  }
+
+</style>

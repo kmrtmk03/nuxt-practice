@@ -42,7 +42,17 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    // 'nuxt-svg-loader',
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: [
+      '~assets/common/scss/_variable.scss',
+      '~assets/common/scss/_reset.scss',
+    ]
+  },
+
   /*
   ** Build configuration
   */
