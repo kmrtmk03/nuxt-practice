@@ -1,7 +1,7 @@
 import anime from 'animejs'
 
 export default class MySprite {
-  constructor(_fileName, _screenWidth, _screenHeight, _posX, _posY, _moveX, _moveY) {
+  constructor(_fileName, _canvasWidth, _canvasHeight, _posX, _posY, _moveX, _moveY) {
 
     //PIXI.jsの設定
     this.PIXI
@@ -12,9 +12,9 @@ export default class MySprite {
     //引数をローカル変数に
     this.fileName = _fileName
 
-    this.screen = {
-      width: _screenWidth,
-      height: _screenHeight
+    this.canvasSize = {
+      width: _canvasWidth,
+      height: _canvasHeight
     }
 
     this.pos = {
@@ -37,7 +37,7 @@ export default class MySprite {
     this.sprite.anchor.y = 0.5;
 
     //Spriteの位置を決める
-    this.SetPosition(this.sprite, this.screen.width * this.pos.x, this.screen.height * this.pos.y)
+    this.SetPosition(this.sprite, this.canvasSize.width * this.pos.x, this.canvasSize.height * this.pos.y)
 
     //Spriteの大きさ
     this.SetScale(this.sprite, 0.25, 0.25)
@@ -81,8 +81,8 @@ export default class MySprite {
 
     //移動量
     let amount = {
-      x: this.screen.width * (this.move.x / 100),
-      y: this.screen.height * (this.move.y / 100)
+      x: this.canvasSize.width * (this.move.x / 100),
+      y: this.canvasSize.height * (this.move.y / 100)
     }
 
     anime({
@@ -112,5 +112,21 @@ export default class MySprite {
         this.sprite.alpha = color.alpha / 1000
       }
     })
+  }
+
+  //リサイズ時のPosition再設定（相対）
+  ResizePosition(_canvasWidth, _canvasHeight, _x, _y) {
+    this.canvasSize.width = _canvasWidth
+    this.canvasSize.height = _canvasHeight
+    this.SetPosition(this.sprite, this.canvasSize.width * _x, this.canvasSize.height * _y)
+  }
+
+  //リサイズ時のPosition再設定（絶対）
+  ResizePositionFix(_x, _y) {
+    this.SetPosition(this.sprite, _x, _y)
+  }
+
+  CallTest() {
+    console.log("Call_Test!!")
   }
 }
