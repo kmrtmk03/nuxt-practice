@@ -43,6 +43,8 @@ export default class ThreeScripts {
       {x: 16, z: 0},
       {x: -16, z: 0},
     ]
+
+    this.isMoveSize = false
   }
 
   Init() { 
@@ -60,8 +62,8 @@ export default class ThreeScripts {
     this.scene = new THREE.Scene()
 
     //Camera
-    this.camera = new THREE.PerspectiveCamera(50, this.windowSize.w / this.windowSize.h)
-    this.camera.position.set(0, 1.5, 4)
+    this.camera = new THREE.PerspectiveCamera(60, this.windowSize.w / this.windowSize.h)
+    this.camera.position.set(0, 1.5, 10)
     this.camera.lookAt(new THREE.Vector3(0, 1.5, 0))
 
     // 平行光源
@@ -69,31 +71,44 @@ export default class ThreeScripts {
     this.directionalLight.position.set(0, 10, 5);
     this.directionalLight.castShadow = true
     this.scene.add(this.directionalLight);
+    this.directionalLight.shadow.mapSize.width = this.directionalLight.shadow.mapSize.height = 1024;
 
+    var directionalLightShadowHelper = new THREE.CameraHelper( this.directionalLight.shadow.camera);
+    this.scene.add( directionalLightShadowHelper);
+    
     let _directionalLight = new THREE.DirectionalLight(0xFFFFFF);
-    _directionalLight.position.set(0, 0, 10);
-    _directionalLight.castShadow = true
+    _directionalLight.position.set(5, 0, 10);
+    // _directionalLight.castShadow = true
     this.scene.add(_directionalLight);
 
-    let _directionalLight2 = new THREE.DirectionalLight(0xFFFFFF);
-    _directionalLight2.position.set(0, 0, -10);
-    _directionalLight2.castShadow = true
-    this.scene.add(_directionalLight2);        
+    // let _directionalLight2 = new THREE.DirectionalLight(0xFFFFFF);
+    // _directionalLight2.position.set(-5, 0, -10);
+    // _directionalLight2.castShadow = true
+    // this.scene.add(_directionalLight2);
 
-    for(let i = 0; i < 9; i++) {
-      //GLTFLoader
-      this.loader = new GLTFLoader()
-      this.loader.load('../base.gltf', data =>  {
-        var gltf = data
-        this.city = gltf.scene
-        this.city.position.x -= this.cityPosition[i].x
-        this.city.position.z -= this.cityPosition[i].z
-        this.city.castShadow = true
-        this.city.receiveShadow = true
-        this.scene.add(this.city)
-      })
-    }
-    //SampleObjectを作成
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1.0);
+    // this.scene.add(ambientLight);    
+    
+    //GLTFLoader
+    this.loader = new GLTFLoader()
+    this.loader.load('../base.gltf', data =>  {
+  //     var gltf = data
+  //     this.city = gltf.scene
+  //     this.city.castShadow = true
+  //     this.city.receiveShadow = true
+  //     this.scene.add(this.city)
+
+      data.scene.traverse( function( node ) {
+        if ( node.isMesh ) {
+          node.castShadow = true
+          node.receiveShadow = true
+        }
+      });
+
+      this.scene.add( data.scene );
+    })
+
+      //SampleObjectを作成
     this.Render()
         
     this.SetEvent()
@@ -111,8 +126,19 @@ export default class ThreeScripts {
 
   MoveCamera(_scrollValue) {
     this.scrollAmount += _scrollValue
-    let _value = this.scrollAmount * 0.00002
-    this.camera.position.set(Math.sin(_value) * 10, 1.5, 4)
+
+    if(!this.isMoveSize) {
+      let _value = this.scrollAmount * 0.0002
+      this.camera.position.set(0, 1.5, -1 * _value + 10)
+      if(this.camera.position.z < 0.3) {
+        this.camera.position.z = 0.3
+        this.scrollAmount = 0
+        this.isMoveSize = true
+      }
+    } else {
+      let _value = this.scrollAmount * 0.00002
+      this.camera.position.set(Math.sin(_value) * 2.5, 1.5, 0.3)
+    }
   }
 
   //Sample Object
