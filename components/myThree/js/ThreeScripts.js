@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 import GLTFLoader from 'three-gltf-loader'
 import anime from 'animejs'
+import { Vector2 } from 'three'
 
 export default class ThreeScripts {
   constructor(props) {
     //propsをローカル変数に
     this.props = props
-
 
     //Config変数
     this.canvas = this.props.$canvas
@@ -22,29 +22,19 @@ export default class ThreeScripts {
     this.sampleBox = null
     this.directionalLight = null
     this.city = null
+
+    //scroll
+    this.scrollAmount = 0
+    this.isMoveSide = false
+
+    //mouse
+    this.mouse = new THREE.Vector2()
+    this.raycaster = new THREE.Raycaster()
+
+    this.isModal = false
     
     //Canvasの初期化
     this.Init()
-
-
-    this.scrollAmount = 0
-    this.cityPosition = [
-      {x: 0, z: 0},
-
-      {x: 4, z: 0},
-      {x: -4, z: 0},
-
-      {x: 8, z: 0},
-      {x: -8, z: 0},
-
-      {x: 12, z: 0},
-      {x: -12, z: 0},
-
-      {x: 16, z: 0},
-      {x: -16, z: 0},
-    ]
-
-    this.isMoveSize = false
   }
 
   Init() { 
@@ -69,35 +59,21 @@ export default class ThreeScripts {
     // 平行光源
     this.directionalLight = new THREE.DirectionalLight(0xFFFFFF);
     this.directionalLight.position.set(0, 10, 5);
-    this.directionalLight.castShadow = true
-    this.scene.add(this.directionalLight);
+    // this.directionalLight.castShadow = true
     this.directionalLight.shadow.mapSize.width = this.directionalLight.shadow.mapSize.height = 1024;
-
-    var directionalLightShadowHelper = new THREE.CameraHelper( this.directionalLight.shadow.camera);
-    this.scene.add( directionalLightShadowHelper);
+    this.scene.add(this.directionalLight);
     
     let _directionalLight = new THREE.DirectionalLight(0xFFFFFF);
     _directionalLight.position.set(5, 0, 10);
     // _directionalLight.castShadow = true
     this.scene.add(_directionalLight);
 
-    // let _directionalLight2 = new THREE.DirectionalLight(0xFFFFFF);
-    // _directionalLight2.position.set(-5, 0, -10);
-    // _directionalLight2.castShadow = true
-    // this.scene.add(_directionalLight2);
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.1);
+    this.scene.add(ambientLight);
 
-    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1.0);
-    // this.scene.add(ambientLight);    
-    
     //GLTFLoader
     this.loader = new GLTFLoader()
     this.loader.load('../base.gltf', data =>  {
-  //     var gltf = data
-  //     this.city = gltf.scene
-  //     this.city.castShadow = true
-  //     this.city.receiveShadow = true
-  //     this.scene.add(this.city)
-
       data.scene.traverse( function( node ) {
         if ( node.isMesh ) {
           node.castShadow = true
@@ -110,6 +86,15 @@ export default class ThreeScripts {
 
       //SampleObjectを作成
     this.Render()
+
+
+    const geo_box = new THREE.BoxGeometry(0.8, 0.9, 0.2)
+    const mat_box = new THREE.MeshBasicMaterial({color: 0xFF0000})
+    const box = new THREE.Mesh(geo_box, mat_box)
+    box.name = "trigger-0"
+    box.material.visible = false
+    box.position.set(0, 1.5, -2.2)
+    this.scene.add(box)
         
     this.SetEvent()
   }
@@ -122,23 +107,56 @@ export default class ThreeScripts {
     window.onmousewheel = (e) => {
       this.MoveCamera(e.wheelDelta)
     }
+
+    this.canvas.addEventListener('mousemove', e => {
+      this.MoveMouse(e)
+    })
+
+    window.onclick = (e) => {
+      // this.OnTrigger()
+    }
+  }
+
+  MoveMouse(_event) {
+    this.mouse.x = (_event.clientX / window.innerWidth) * 2 - 1
+    this.mouse.y = -(_event.clientY / window.innerHeight) * 2 + 1
   }
 
   MoveCamera(_scrollValue) {
     this.scrollAmount += _scrollValue
 
-    if(!this.isMoveSize) {
+    if(!this.isMoveSide) {
       let _value = this.scrollAmount * 0.0002
       this.camera.position.set(0, 1.5, -1 * _value + 10)
       if(this.camera.position.z < 0.3) {
         this.camera.position.z = 0.3
         this.scrollAmount = 0
-        this.isMoveSize = true
+        this.isMoveSide = true
       }
     } else {
       let _value = this.scrollAmount * 0.00002
       this.camera.position.set(Math.sin(_value) * 2.5, 1.5, 0.3)
     }
+  }
+
+  OnTrigger () {
+    let _bool = false
+
+    if(!this.isModal) {
+      this.raycaster.setFromCamera(this.mouse, this.camera)
+
+      const rayObject = this.raycaster.intersectObjects(this.scene.children)
+      if(rayObject.length > 0){
+        this.ChangeIsModal(true)
+        _bool = true
+      }
+    }
+
+    return _bool
+  }
+
+  ChangeIsModal(_bool) {
+    this.isModal = _bool
   }
 
   //Sample Object
