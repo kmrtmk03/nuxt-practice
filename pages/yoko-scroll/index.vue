@@ -6,9 +6,9 @@
           li.content-item.content-item-0
             Main(:scrollAmount='translateX')
           li.content-item.content-item-1
-            h2 content-1
+            Profile(:scrollAmount='translateX')
           li.content-item.content-item-2
-            h2 content-2
+            Works(:scrollAmount='translateX')
           li.content-item.content-item-3
             h2 content-3
           li.content-item.content-item-4
@@ -24,6 +24,8 @@
 
 <script>
 import Main from '~/components/yoko-scroll/main'
+import Profile from '~/components/yoko-scroll/profile'
+import Works from '~/components/yoko-scroll/works'
 
 export default {
   data() {
@@ -42,7 +44,9 @@ export default {
     }
   },
   components: {
-    Main
+    Main,
+    Profile,
+    Works
   },
   mounted() {
     //スクロールを禁止
