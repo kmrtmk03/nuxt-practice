@@ -57,6 +57,8 @@
           li.grid-item.grid-item-c
             h4.heading 見出しC
 
+      Slide
+
 
 </template>
 
@@ -65,6 +67,7 @@
   import SampleSvg from '~/assets/css-sample/svg/sample.svg'
   import anime from 'animejs'
   import Scrollbar from '~/assets/css-sample/js/Scrollbar.js'
+  import Slide from '~/components/css-sample/Slide.vue'
 
   let PIXI
   if(process.client) {
@@ -90,7 +93,8 @@
       }
     },
     components: {
-      SampleSvg
+      SampleSvg,
+      Slide
     },
     mounted() {
       this.OnMask()
@@ -562,6 +566,10 @@
         z-index: 1;
       }
     }
+  }
+
+  .style-4 {
+
   }
 
 </style>
