@@ -118,7 +118,7 @@ export default {
         background-color: #fff;
       }
       &-2 {
-        background-color: #ccc;
+        background-color: #fff;
       }
       &-3 {
         background-color: #aaa;
