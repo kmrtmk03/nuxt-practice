@@ -1,6 +1,18 @@
 $designwidth-sp: 750 / 100;
 $keyColor: #333;
 
+
+//flex
+@mixin flex-center() {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin center-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 //fontsize
 @mixin fontsize-sp($_size) {
   font-size: #{$_size / $designwidth-sp}vw;
