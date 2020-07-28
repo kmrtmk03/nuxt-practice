@@ -1,6 +1,7 @@
 <template lang="pug">
   .wrapper
     First(v-if="this.display.first" v-on:close="modal_close")
+    Scketch(v-if="this.display.scketch")
     ul.button
       li.button-item(v-on:click="this.modal_open") First
       li.button-item Second
@@ -9,17 +10,20 @@
 <script>
 import anime from 'animejs'
 import First from '~/components/pixi_js/first'
+import Scketch from '~/components/pixi_js/scketch'
 
 export default {
   data() {
     return {
       display: {
-        first: false
+        first: false,
+        scketch: true
       }
     }
   },
   components: {
-    First
+    First,
+    Scketch
   },
   methods: {
     modal_open() {
