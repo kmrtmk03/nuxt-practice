@@ -1,6 +1,25 @@
 <template lang="pug">
   .container.container-works
     .works-inner
+      ul.thumbnail-wrap
+        li.thumbnail-item
+          .thumbnail-image
+          h3.thumbnail-title Thumbnail Title
+        li.thumbnail-item
+          .thumbnail-image
+          h3.thumbnail-title Thumbnail Title
+        li.thumbnail-item
+          .thumbnail-image
+          h3.thumbnail-title Thumbnail Title
+        li.thumbnail-item
+          .thumbnail-image
+          h3.thumbnail-title Thumbnail Title
+        li.thumbnail-item
+          .thumbnail-image
+          h3.thumbnail-title Thumbnail Title
+        li.thumbnail-item
+          .thumbnail-image
+          h3.thumbnail-title Thumbnail Title
 </template>
 
 
@@ -36,10 +55,31 @@ export default {
   }
 
   .works-inner {
-    display: flex;
     width: 95vw;
     height: calc(100vh - 5vw);
     margin: 2.5vw;
-    background-color: #333;
+  }
+
+  .thumbnail {
+    &-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      text-align: center;
+    }
+
+    &-item {
+      width: 32%;
+      margin-bottom: 20px;
+    }
+    &-image {
+      height: 18vw;
+      background-color: #aaa;
+      width: 100%;
+    }
+    &-title {
+      padding: 10px 0;
+    }
   }
 </style>

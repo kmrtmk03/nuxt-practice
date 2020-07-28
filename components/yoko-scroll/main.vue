@@ -2,7 +2,7 @@
   .container.container-main
     span.bg(:style="{ transform: 'skewY(' + this.ValueDeg + 'deg)'}" :class="{loaded: this.isLoaded}")
     .main-wrap
-      h2.title Main Visual
+      h2.title MAIN VISUAL
 </template>
 
 
@@ -71,7 +71,7 @@ export default {
 
   .title {
     font-family: Helvetica, sans-serif;
-    font-size: 15vw;
+    font-size: 13vw;
     color: #fff;
     text-align: center;
     line-height: calc(100vh - 4vw);
